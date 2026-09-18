@@ -32,6 +32,10 @@ export const portfolioLinks = {
 export const portfolioImages = {
   profile: "/abdullah.png",
   vitoencodes: "/vitoencodes-poster.jpg",
+  processDiscover: null,
+  processArchitect: null,
+  processBuild: null,
+  processRefine: null,
 } as const;
 
 export const navigation = [
@@ -122,6 +126,90 @@ export const technologies = [
   { name: "Media Encoding & Post-Production", detail: "Video encoding, transcoding, restoration, regrading, and cinematic media workflows" },
   { name: "JavaScript", detail: "Responsive product interfaces" },
   { name: "Tailwind CSS", detail: "Consistent, maintainable interface systems" },
+] as const;
+
+export const approach = [
+  {
+    number: "01",
+    title: "Understand",
+    text: "Turn the initial idea into clear requirements, priorities, and a practical technical direction.",
+  },
+  {
+    number: "02",
+    title: "Architect",
+    text: "Design the underlying structure, data models, API contracts, and system boundaries before building.",
+  },
+  {
+    number: "03",
+    title: "Build",
+    text: "Develop the product with maintainable code, reliable integrations, and production-minded foundations.",
+  },
+  {
+    number: "04",
+    title: "Refine",
+    text: "Test, optimize, polish, and improve the system until the final experience feels dependable.",
+  },
+] as const;
+
+export const capabilities = [
+  {
+    title: "Backend Systems",
+    text: "Reliable server-side foundations for applications and digital products.",
+    tone: "backend",
+    code: "PY",
+  },
+  {
+    title: "REST APIs",
+    text: "Structured APIs designed for integrations, authentication, and long-term use.",
+    tone: "api",
+    code: "API",
+  },
+  {
+    title: "AI Integration",
+    text: "Practical AI capabilities connected to real product workflows.",
+    tone: "ai",
+    code: "AI",
+  },
+  {
+    title: "Automation",
+    text: "Background jobs, workflows, and integrations that reduce repetitive work.",
+    tone: "automation",
+    code: "AUTO",
+  },
+] as const;
+
+export const processSteps = [
+  {
+    number: "01",
+    title: "Discover",
+    text: "Understand the problem, requirements, users, and desired outcome.",
+    placeholder: "DISCOVERY VISUAL",
+  },
+  {
+    number: "02",
+    title: "Architect",
+    text: "Shape the technical architecture, data models, APIs, and implementation plan.",
+    placeholder: "ARCHITECTURE VISUAL",
+  },
+  {
+    number: "03",
+    title: "Build",
+    text: "Turn the architecture into a functional product with clean and maintainable code.",
+    placeholder: "BUILD VISUAL",
+  },
+  {
+    number: "04",
+    title: "Refine",
+    text: "Test, optimize, polish, and prepare the product for dependable release.",
+    placeholder: "REFINEMENT VISUAL",
+  },
+] as const;
+
+export const systemRisks = [
+  ["Complexity", "Clear structure"],
+  ["Fragility", "Reliable foundations"],
+  ["Repetition", "Useful automation"],
+  ["Unclear interfaces", "Explicit API contracts"],
 ] as const;
 
 export const isPlaceholderLink = (value: string) => /(_HERE|EMAIL_HERE)/.test(value);
