@@ -66,16 +66,12 @@ export function VitoEncodes() {
             <div className="cinema-vitoencodes__links">
               <SmartLink
                 href={portfolioLinks.vitoencodesYoutube}
-                target="_blank"
-                rel="noreferrer"
               >
                 YouTube <ArrowUpRight />
               </SmartLink>
 
               <SmartLink
                 href={portfolioLinks.vitoencodesFacebook}
-                target="_blank"
-                rel="noreferrer"
               >
                 Facebook <ArrowUpRight />
               </SmartLink>
