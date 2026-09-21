@@ -24,7 +24,7 @@ export function Approach() {
               key={step.number}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.45 }}
+              viewport={{ once: true, amount: 0.12, margin: "0px 0px -10% 0px" }}
               transition={{ duration: 0.75, delay: index * 0.08, ease: premiumEase }}
             >
               <span>{step.number}</span>

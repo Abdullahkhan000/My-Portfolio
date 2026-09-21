@@ -24,10 +24,10 @@ function ProcessPanel({ step, image, index }: { step: (typeof processSteps)[numb
       <motion.div className="process-panel__media" style={{ scale: imageScale }}>
         {image ? <Image src={image} alt={`${step.title} phase visual`} fill sizes="100vw" /> : <div className="process-panel__placeholder" role="img" aria-label={step.placeholder}><span>[{step.placeholder}]</span></div>}
       </motion.div>
-      <motion.div className="process-panel__title" initial={{ opacity: 0, x: -28 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.4 }} transition={{ duration: 0.65, ease: premiumEase }}>
+      <motion.div className="process-panel__title" initial={{ opacity: 0, x: -28 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.12, margin: "0px 0px -10% 0px" }} transition={{ duration: 0.65, ease: premiumEase }}>
         <span>{step.number}</span><h3>{step.title}</h3>
       </motion.div>
-      <motion.p initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.6, delay: 0.1, ease: premiumEase }}>{step.text}</motion.p>
+      <motion.p initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.12, margin: "0px 0px -10% 0px" }} transition={{ duration: 0.6, delay: 0.1, ease: premiumEase }}>{step.text}</motion.p>
     </article>
   );
 }

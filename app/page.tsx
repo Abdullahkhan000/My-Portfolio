@@ -7,6 +7,7 @@ import { IntroLoader } from "@/components/IntroLoader";
 import { MotionProvider } from "@/components/ui/Motion";
 import { Navigation } from "@/components/Navigation";
 import { Projects } from "@/components/Projects";
+import { PremiumInteractions } from "@/components/PremiumInteractions";
 import { Services } from "@/components/Services";
 import { VitoEncodes } from "@/components/VitoEncodes";
 
@@ -14,6 +15,7 @@ export default function Home() {
   return (
     <MotionProvider>
       <IntroLoader />
+      <PremiumInteractions />
       <AmbientScene />
       <Navigation />
       <main>

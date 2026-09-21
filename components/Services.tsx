@@ -17,7 +17,7 @@ export function Services() {
         </Reveal>
         <div className="cinema-services__grid">
           {services.map((service, index) => (
-            <motion.article key={service.title} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} transition={{ duration: 0.55, delay: (index % 3) * 0.07, ease: premiumEase }}>
+            <motion.article key={service.title} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.12, margin: "0px 0px -10% 0px" }} transition={{ duration: 0.55, delay: (index % 3) * 0.07, ease: premiumEase }}>
               <div className="service-glyph" aria-hidden="true"><i /><i /><span>{service.code}</span></div>
               <div><small>0{index + 1}</small><h3>{service.title}</h3><p>{service.detail}</p></div>
               <ArrowUpRight />
