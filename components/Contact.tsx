@@ -1,83 +1,139 @@
 "use client";
 
-import type { FormEvent } from "react";
-import { useEffect, useRef, useState } from "react";
-import { portfolioLinks, isPlaceholderLink } from "@/data/portfolio";
+import { useState, type FormEvent } from "react";
+import emailjs from "@emailjs/browser";
+import { portfolioLinks } from "@/data/portfolio";
 import { ArrowUpRight } from "@/components/ui/Icons";
 import { Reveal } from "@/components/ui/Motion";
 import { SmartLink } from "@/components/ui/SmartLink";
 
 export function Contact() {
-  const disabled = isPlaceholderLink(portfolioLinks.email);
-  const startedAt = useRef(0);
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
-  const [statusMessage, setStatusMessage] = useState("");
-
-  useEffect(() => {
-    startedAt.current = Date.now();
-  }, []);
+  const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (disabled || status === "sending") return;
 
     const form = event.currentTarget;
-    const values = new FormData(form);
-    setStatus("sending");
-    setStatusMessage("Sending securely…");
+
+    setSending(true);
+    setSubmitted(false);
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: values.get("name"),
-          email: values.get("email"),
-          message: values.get("message"),
-          website: values.get("website"),
-          startedAt: startedAt.current,
-        }),
-      });
-      const result = await response.json().catch(() => ({}));
-      if (!response.ok) throw new Error(result.error || "Message could not be sent.");
+      await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        form,
+        {
+          publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!,
+        }
+      );
+
+      setSubmitted(true);
       form.reset();
-      startedAt.current = Date.now();
-      setStatus("success");
-      setStatusMessage("Message received. I’ll get back to you soon.");
     } catch (error) {
-      setStatus("error");
-      setStatusMessage(error instanceof Error ? error.message : "Message could not be sent right now.");
+      console.error("Contact form error:", error);
+      alert("Unable to send your enquiry. Please try again.");
+    } finally {
+      setSending(false);
     }
   }
 
   return (
-    <section className="cinema-section cinema-contact" id="contact" aria-labelledby="contact-title">
+    <section
+      className="cinema-section cinema-contact"
+      id="contact"
+      aria-labelledby="contact-title"
+    >
       <div className="cinema-panel cinema-contact__panel">
         <header className="cinema-panel__header">
-          <span>04 / Connect</span><h2 id="contact-title">Contact</h2><span>Available for freelance</span>
+          <span>04 / Connect</span>
+          <h2 id="contact-title">Contact</h2>
+          <span>Available for freelance</span>
         </header>
+
         <div className="cinema-contact__layout">
           <Reveal className="cinema-contact__copy">
-            <span className="eyebrow">Have a serious product in mind?</span>
+            <span className="eyebrow">
+              Have a serious product in mind?
+            </span>
+
             <h3>Let&apos;s make it real.</h3>
-            <p>For web applications, APIs, AI integrations, automation, database systems, and digital media workflows.</p>
+
+            <p>
+              For web applications, APIs, AI integrations, automation,
+              database systems, and digital media workflows.
+            </p>
+
             <div className="cinema-contact__socials">
-              <SmartLink href={portfolioLinks.github}>GitHub <ArrowUpRight /></SmartLink>
-              <SmartLink href={portfolioLinks.linkedin}>LinkedIn <ArrowUpRight /></SmartLink>
-              <SmartLink href={portfolioLinks.instagram}>Instagram <ArrowUpRight /></SmartLink>
+              <SmartLink href={portfolioLinks.github}>
+                GitHub <ArrowUpRight />
+              </SmartLink>
 
+              <SmartLink href={portfolioLinks.linkedin}>
+                LinkedIn <ArrowUpRight />
+              </SmartLink>
 
-              <SmartLink href={portfolioLinks.cv}>Résumé <ArrowUpRight /></SmartLink>
+              <SmartLink href={portfolioLinks.instagram}>
+                Instagram <ArrowUpRight />
+              </SmartLink>
+
+              <SmartLink href={portfolioLinks.cv}>
+                Résumé <ArrowUpRight />
+              </SmartLink>
             </div>
           </Reveal>
-          <form className="cinema-contact__form" onSubmit={handleSubmit}>
-            <input className="contact-trap" name="website" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" />
-            <label><span>Name</span><input name="name" type="text" autoComplete="name" required placeholder="Your name" /></label>
-            <label><span>Email</span><input name="email" type="email" autoComplete="email" required placeholder="you@company.com" /></label>
-            <label><span>Project</span><textarea name="message" required rows={5} placeholder="Tell me what you are building" /></label>
-            <button type="submit" disabled={disabled || status === "sending"}>{status === "sending" ? "Sending…" : "Send enquiry"} <ArrowUpRight /></button>
-            {statusMessage && <small className={`contact-status contact-status--${status}`} aria-live="polite">{statusMessage}</small>}
-            {disabled && <small>Email delivery activates after replacing EMAIL_HERE in data/portfolio.ts.</small>}
+
+          <form
+            className="cinema-contact__form"
+            onSubmit={handleSubmit}
+          >
+            <label>
+              <span>Name</span>
+
+              <input
+                name="name"
+                type="text"
+                autoComplete="name"
+                required
+                placeholder="Your name"
+              />
+            </label>
+
+            <label>
+              <span>Email</span>
+
+              <input
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                placeholder="you@company.com"
+              />
+            </label>
+
+            <label>
+              <span>Project</span>
+
+              <textarea
+                name="message"
+                required
+                rows={5}
+                placeholder="Tell me what you are building"
+              />
+            </label>
+
+            <button type="submit" disabled={sending}>
+              {sending ? "Sending..." : "Send enquiry"}
+
+              {!sending && <ArrowUpRight />}
+            </button>
+
+            {submitted && (
+              <small>
+                ✓ Enquiry sent successfully. I&apos;ll get back to you soon.
+              </small>
+            )}
           </form>
         </div>
       </div>
