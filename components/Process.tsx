@@ -14,6 +14,7 @@ const processImages = [
   portfolioImages.processRefine,
 ];
 
+
 function ProcessPanel({ step, image, index }: { step: (typeof processSteps)[number]; image: string | null; index: number }) {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
