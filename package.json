@@ -6,13 +6,16 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@fontsource-variable/bitter": "5.3.0",
     "@fontsource/lato": "5.3.0",
     "@fontsource/nanum-myeongjo": "5.3.0",
+    "@opennextjs/cloudflare": "^1.20.6",
     "framer-motion": "13.4.0",
     "next": "16.3.5",
     "react": "19.3.0",
@@ -26,6 +29,7 @@
     "eslint": "^9.0.0",
     "eslint-config-next": "16.3.5",
     "tailwindcss": "4.3.3",
-    "typescript": "^5.9.0"
+    "typescript": "^5.9.0",
+    "wrangler": "^4.140.0"
   }
 }
