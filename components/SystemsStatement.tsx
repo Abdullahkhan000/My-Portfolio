@@ -14,7 +14,7 @@ export function SystemsStatement() {
         <Reveal><h2 id="systems-title">Serious products shouldn&apos;t feel fragile</h2></Reveal>
         <div className="systems-statement__lines">
           {systemRisks.map(([lead, result], index) => (
-            <motion.p key={lead} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * 0.05, duration: 0.5, ease: premiumEase }}>
+            <motion.p key={lead} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.12, margin: "0px 0px -10% 0px" }} transition={{ delay: index * 0.05, duration: 0.5, ease: premiumEase }}>
               <span>¬ {lead}</span> <strong>{result}</strong>
             </motion.p>
           ))}
