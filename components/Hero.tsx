@@ -4,7 +4,6 @@ import { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { animate, createTimeline, stagger } from "animejs";
 import { ArrowDown, ArrowUpRight } from "@/components/ui/Icons";
-import { premiumEase } from "@/components/ui/Motion";
 
 export function Hero() {
   const heroRef = useRef<HTMLElement>(null);
@@ -18,15 +17,17 @@ export function Hero() {
 
     const hero = heroRef.current;
 
-    const chars = hero.querySelectorAll(".hero-name-char");
-    const eyebrow = hero.querySelector(".hero-eyebrow");
-    const role = hero.querySelector(".hero-role");
-    const coordinates = hero.querySelectorAll(".cinema-hero__coordinate");
-    const orb = hero.querySelector(".signal-orb");
-    const orbRings = hero.querySelectorAll(".signal-orb i");
-    const orbLabel = hero.querySelector(".signal-orb span");
-    const cta = hero.querySelector(".cinema-hero__cta");
-    const scroll = hero.querySelector(".cinema-scroll");
+    const chars = hero.querySelectorAll<HTMLElement>(".hero-name-char");
+    const eyebrow = hero.querySelector<HTMLElement>(".hero-eyebrow");
+    const role = hero.querySelector<HTMLElement>(".hero-role");
+    const coordinates = hero.querySelectorAll<HTMLElement>(".cinema-hero__coordinate");
+    const orb = hero.querySelector<HTMLElement>(".signal-orb");
+    const orbRings = hero.querySelectorAll<HTMLElement>(".signal-orb i");
+    const orbLabel = hero.querySelector<HTMLElement>(".signal-orb span");
+    const cta = hero.querySelector<HTMLElement>(".cinema-hero__cta");
+    const scroll = hero.querySelector<HTMLElement>(".cinema-scroll");
+
+    if (!eyebrow || !role || !orb || !orbLabel || !cta || !scroll) return;
 
     const timeline = createTimeline({
       defaults: {

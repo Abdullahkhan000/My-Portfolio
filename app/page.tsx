@@ -1,5 +1,6 @@
 import { About } from "@/components/About";
 import { AmbientScene } from "@/components/AmbientScene";
+import { CameraInterlude } from "@/components/CameraInterlude";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
@@ -21,6 +22,7 @@ export default function Home() {
         <About />
         <Services />
         <Projects />
+        <CameraInterlude />
         <VitoEncodes />
         <Contact />
       </main>

@@ -652,6 +652,68 @@ main,
 .cinema-footer > div a { color:#7c8581; }
 
 /* =========================================================
+   CAMERA INTERLUDE
+   ========================================================= */
+.camera-interlude {
+  min-height: 100svh;
+  padding: 0 clamp(1.4rem, 6vw, 6rem);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at 50% 50%, rgba(102, 139, 132, 0.08), transparent 42%);
+}
+
+.camera-interlude__stage {
+  position: relative;
+  width: min(90rem, 100%);
+  height: min(82svh, 52rem);
+  min-height: 34rem;
+  overflow: hidden;
+  border-top: 1px solid rgba(183, 198, 193, 0.19);
+  border-bottom: 1px solid rgba(183, 198, 193, 0.19);
+  background: linear-gradient(90deg, rgba(6, 9, 9, 0.4), transparent 22%, transparent 78%, rgba(6, 9, 9, 0.4));
+}
+
+.camera-interlude__stage .vito-camera-stage {
+  background: radial-gradient(circle at 50% 48%, rgba(101, 139, 131, 0.2), transparent 44%);
+}
+
+.camera-interlude__copy {
+  position: absolute;
+  z-index: 5;
+  top: 2.2rem;
+  left: 2.2rem;
+  pointer-events: none;
+}
+
+.camera-interlude__copy span,
+.camera-interlude__copy p,
+.camera-interlude__measure {
+  color: rgba(188, 213, 205, 0.62);
+  font-family: Lato, sans-serif;
+  font-size: 0.52rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.camera-interlude__copy h2 {
+  max-width: 12rem;
+  margin: 0.8rem 0 0.5rem;
+  color: rgba(224, 235, 231, 0.86);
+  font-family: "Nanum Myeongjo", serif;
+  font-size: clamp(2.2rem, 5vw, 5rem);
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+
+.camera-interlude__copy p { margin: 0; opacity: 0.65; }
+.camera-interlude__measure { position: absolute; z-index: 5; bottom: 2rem; pointer-events: none; opacity: 0.65; }
+.camera-interlude__measure--left { left: 2.2rem; }
+.camera-interlude__measure--right { right: 2.2rem; }
+
+/* =========================================================
    VITOENCODES
    ========================================================= */
 
@@ -715,6 +777,53 @@ main,
   transition:
     transform 900ms cubic-bezier(0.2, 0.65, 0.25, 1),
     filter 700ms ease;
+}
+
+.vito-camera-stage {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 48%, rgba(101, 139, 131, 0.16), transparent 44%);
+}
+
+.vito-camera-stage canvas {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.vito-camera-stage__grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.12;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(170, 200, 192, 0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(170, 200, 192, 0.15) 1px, transparent 1px);
+  background-size: 2.4rem 2.4rem;
+  mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+}
+
+.vito-camera-stage__label,
+.vito-camera-stage__status {
+  position: absolute;
+  z-index: 2;
+  color: rgba(188, 213, 205, 0.62);
+  font-family: Lato, sans-serif;
+  font-size: 0.48rem;
+  letter-spacing: 0.18em;
+  pointer-events: none;
+  text-transform: uppercase;
+}
+
+.vito-camera-stage__label { top: 1rem; left: 1rem; }
+.vito-camera-stage__status { right: 1rem; bottom: 1rem; }
+.vito-camera-stage__status i { display: inline-block; width: 5px; height: 5px; margin-right: 0.35rem; border-radius: 50%; background: #86b1a3; box-shadow: 0 0 10px #86b1a3; }
+.vito-camera-poster {
+  position: absolute;
+  z-index: 1;
+  opacity: 0.86;
+  filter: saturate(0.78) brightness(0.72);
 }
 
 .cinema-vitoencodes__poster:hover img {
@@ -850,6 +959,107 @@ main,
   opacity: 0.42;
 }
 
+.vito-scanline {
+  position: absolute;
+  z-index: 8;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 18%;
+  opacity: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, rgba(170, 205, 194, 0.2), rgba(220, 240, 233, 0.42), transparent);
+  mix-blend-mode: screen;
+}
+
+.vito-camera {
+  position: absolute;
+  z-index: 6;
+  left: 5%;
+  bottom: 7%;
+  width: min(48%, 260px);
+  aspect-ratio: 1.35;
+  opacity: 0;
+  transform-origin: center left;
+  filter: drop-shadow(0 20px 25px rgba(0, 0, 0, 0.65));
+}
+
+.vito-camera__body {
+  position: absolute;
+  inset: 18% 0 10% 0;
+  border: 1px solid rgba(190, 207, 201, 0.5);
+  background: linear-gradient(135deg, rgba(132, 156, 151, 0.26), transparent 40%), linear-gradient(145deg, #252b29, #080a0a 70%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06), 0 0 30px rgba(100, 150, 140, 0.15);
+}
+
+.vito-camera__top {
+  position: absolute;
+  top: 5%;
+  left: 18%;
+  width: 48%;
+  height: 22%;
+  border: 1px solid rgba(190, 207, 201, 0.42);
+  border-bottom: 0;
+  background: #141918;
+}
+
+.vito-camera__lens {
+  position: absolute;
+  top: 18%;
+  right: -20%;
+  width: 48%;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: radial-gradient(circle, #101616 0 18%, #6b8d86 19% 22%, #101313 23% 38%, #536c67 39% 41%, #090b0b 42% 66%, #879f99 67% 68%, #080909 69%);
+  box-shadow: 0 0 0 1px rgba(190, 220, 210, 0.5), 0 0 35px rgba(110, 165, 150, 0.22);
+  opacity: 0;
+}
+
+.vito-camera__ring {
+  position: absolute;
+  border: 1px solid rgba(205, 225, 218, 0.55);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.vito-camera__ring--outer { inset: -8%; }
+.vito-camera__ring--middle { inset: 8%; border-style: dashed; }
+.vito-camera__ring--inner { inset: 22%; border-color: rgba(130, 180, 165, 0.75); }
+
+.vito-camera__lens b {
+  width: 24%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #020303;
+  box-shadow: 0 0 14px rgba(150, 210, 190, 0.55);
+}
+
+.vito-camera__brand,
+.vito-camera__side-mark,
+.vito-camera__rec {
+  position: absolute;
+  z-index: 2;
+  font-family: Lato, sans-serif;
+  font-size: 0.48rem;
+  letter-spacing: 0.16em;
+  color: rgba(225, 235, 231, 0.72);
+}
+
+.vito-camera__brand { top: 15%; left: 8%; }
+.vito-camera__side-mark { bottom: 13%; left: 8%; opacity: 0.5; }
+.vito-camera__rec { right: 8%; bottom: 12%; display: flex; align-items: center; gap: 0.35rem; color: #d5a59a; }
+
+.vito-camera__rec i {
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #e57662;
+  box-shadow: 0 0 10px #e57662;
+}
+
 @media (max-width: 850px) {
   .cinema-vitoencodes__layout {
     grid-template-columns: 1fr;
@@ -864,6 +1074,8 @@ main,
   .cinema-vitoencodes__content {
     max-width: none;
   }
+
+  .vito-camera { width: 48%; left: 3%; bottom: 5%; }
 }
 
 @media (max-width: 520px) {
@@ -883,6 +1095,11 @@ main,
   .cinema-vitoencodes__poster {
     aspect-ratio: 3 / 4;
   }
+
+  .vito-camera { width: 56%; opacity: 0.92; }
+  .vito-camera__brand,
+  .vito-camera__side-mark,
+  .vito-camera__rec { font-size: 0.38rem; }
 }
 
 @media (max-width: 1024px) {
