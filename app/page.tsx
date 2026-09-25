@@ -1,10 +1,14 @@
 import { About } from "@/components/About";
 import { AmbientScene } from "@/components/AmbientScene";
-import { CameraInterlude } from "@/components/CameraInterlude";
 import { Contact } from "@/components/Contact";
+import { Capabilities } from "@/components/Capabilities";
 import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
 import { IntroLoader } from "@/components/IntroLoader";
+import { Approach } from "@/components/Approach";
+import { Process } from "@/components/Process";
+import { Resume } from "@/components/Resume";
+import { TechStack } from "@/components/TechStack";
 import { MotionProvider } from "@/components/ui/Motion";
 import { Navigation } from "@/components/Navigation";
 import { Projects } from "@/components/Projects";
@@ -22,10 +26,14 @@ export default function Home() {
       <main>
         <Hero />
         <About />
+        <Capabilities />
         <Services />
+        <TechStack />
+        <Approach />
+        <Process />
         <Projects />
-        <CameraInterlude />
         <VitoEncodes />
+        <Resume />
         <Contact />
       </main>
       <Footer />

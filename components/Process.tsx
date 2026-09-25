@@ -27,14 +27,20 @@ function ProcessPanel({ step, image, index }: { step: (typeof processSteps)[numb
       <motion.div className="process-panel__title" initial={{ opacity: 0, x: -28 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, amount: 0.12, margin: "0px 0px -10% 0px" }} transition={{ duration: 0.65, ease: premiumEase }}>
         <span>{step.number}</span><h3>{step.title}</h3>
       </motion.div>
-      <motion.p initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.12, margin: "0px 0px -10% 0px" }} transition={{ duration: 0.6, delay: 0.1, ease: premiumEase }}>{step.text}</motion.p>
+      <motion.div className="process-panel__copy" initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.12, margin: "0px 0px -10% 0px" }} transition={{ duration: 0.6, delay: 0.1, ease: premiumEase }}>
+        <p>{step.text}</p>
+        <div className="process-panel__meta">
+          <div><span>Focus</span><small>{step.focus}</small></div>
+          <div><span>Output</span><small>{step.output}</small></div>
+        </div>
+      </motion.div>
     </article>
   );
 }
 
 export function Process() {
   return (
-    <section className="reference-process" aria-labelledby="process-title">
+    <section className="reference-process" id="process" aria-labelledby="process-title">
       <div className="reference-section reference-process__intro">
         <div className="reference-grid" aria-hidden="true" />
         <SectionMeta number="05" label="My process" />
