@@ -24,7 +24,7 @@ export function Projects() {
         </header>
         <Reveal className="cinema-work__intro"><p>Selected products and systems. Drag through the archive—or use the controls—to inspect each build.</p></Reveal>
 
-        <div className="project-stage" aria-live="polite">
+        <div className="project-stage" aria-live="polite" aria-label="Project carousel. Swipe or drag left and right to change projects.">
           {projects.map((item, index) => {
             const offset = (index - active + projects.length) % projects.length;
             const placement = offset === 0 ? "active" : offset === 1 ? "next" : "previous";
@@ -34,7 +34,22 @@ export function Projects() {
                 ? { x: "68%", scale: 0.72, rotateY: -17, opacity: 0.28, zIndex: 1 }
                 : { x: "-68%", scale: 0.72, rotateY: 17, opacity: 0.28, zIndex: 1 };
             return (
-              <motion.article className={`project-frame is-${placement}`} key={item.title} animate={motionState} initial={false} transition={{ duration: 0.75, ease: premiumEase }}>
+              <motion.article
+                className={`project-frame is-${placement}`}
+                key={item.title}
+                animate={motionState}
+                initial={false}
+                drag={placement === "active" ? "x" : false}
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.24}
+                whileTap={placement === "active" ? { cursor: "grabbing" } : undefined}
+                onDragEnd={(_, info) => {
+                  if (Math.abs(info.offset.x) > 55 || Math.abs(info.velocity.x) > 260) {
+                    step(info.offset.x < 0 || info.velocity.x < 0 ? 1 : -1);
+                  }
+                }}
+                transition={{ duration: 0.75, ease: premiumEase }}
+              >
                 <div className="project-frame__media">
                   {item.image ? <Image src={item.image} alt={`${item.title} project interface`} fill sizes="(max-width: 760px) 92vw, 68vw" /> : <div className={`project-frame__placeholder project-frame__placeholder--${index + 1}`} role="img" aria-label={item.imagePlaceholder}><span>[{item.imagePlaceholder}]</span><i /><i /><i /></div>}
                   <div className="project-frame__scan" aria-hidden="true" />

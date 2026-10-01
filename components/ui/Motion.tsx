@@ -7,7 +7,13 @@ export const premiumEase = [0.22, 1, 0.36, 1] as const;
 
 export function MotionProvider({ children }: PropsWithChildren) {
   return (
-    <MotionConfig reducedMotion="user" transition={{ duration: 0.62, ease: premiumEase }}>
+    <MotionConfig
+      // The portfolio intentionally uses motion as part of its visual identity.
+      // CSS still respects prefers-reduced-motion; this prevents Framer Motion
+      // from silently disabling only some transforms based on browser settings.
+      reducedMotion="never"
+      transition={{ duration: 0.62, ease: premiumEase }}
+    >
       {children}
     </MotionConfig>
   );
@@ -29,7 +35,7 @@ export function Reveal({
       className={className}
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount }}
+      viewport={{ once: true, amount, margin: "0px 0px -12% 0px" }}
       transition={{ duration: 0.62, delay, ease: premiumEase }}
     >
       {children}

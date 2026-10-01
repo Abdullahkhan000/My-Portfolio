@@ -18,7 +18,7 @@ export function TechEcosystem() {
             key={technology.name}
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
+            viewport={{ once: true, amount: 0.12, margin: "0px 0px -10% 0px" }}
             transition={{ duration: 0.55, delay: (index % 4) * 0.05, ease: premiumEase }}
           >
             <span>0{index + 1}</span><h3>{technology.name}</h3><p>{technology.detail}</p>
